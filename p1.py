@@ -1,5 +1,11 @@
+# Problem 1: Multiples of 3 and 5
+# https://projecteuler.net/problem=1
+# Key idea
+# - using mathematical concepts to reduce the iteration number
+
 # Target number used to limit iteration
 # Since it's defined in the problem as 'below 1000', it shouldn't contain 1000.
+# NOTE: Clarify the range of the problem before diving into it.
 k = 999
 
 # Initial idea method, O(1)
@@ -18,7 +24,8 @@ for i in range(3):
 
     sum.append(s)
 
-print(f'{sum[0]} + {sum[1]} - {sum[2]} = {sum[0] + sum[1] - sum[2]}')
+# print(f'{sum[0]} + {sum[1]} - {sum[2]} = {sum[0] + sum[1] - sum[2]}')
+print(str(sum[0] + sum[1] - sum[2]))
 
 # Bruteforce method, O(n)
 
@@ -30,3 +37,17 @@ for i in range(1000):
 print(s)
 
 # Function method (from overview), O(1)
+# NOTE: Use functons or external blocks for complicated for loops or loops with
+#       small iteration count.
+
+def get_multiple_sum(f):
+    n = k // f
+    max = k - k % f
+    sum = (f + max) * (n // 2)
+
+    if n % 2 is 1:
+        sum += (f + max) // 2
+
+    return sum
+
+print(str(get_multiple_sum(3) + get_multiple_sum(5) - get_multiple_sum(15)))
